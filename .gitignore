@@ -1,0 +1,18 @@
+# Ignore Terraform working directories in each Day folder
+Day*/.terraform/
+Day*/.terraform.lock.hcl
+
+# Ignore Terraform state files
+Day*/*.tfstate
+Day*/*.tfstate.backup
+
+# Ignore crash logs
+Day*/crash.log
+Day*/crash.*.log
+
+# Ignore variable override files (often contain secrets)
+Day*/*.tfvars
+Day*/*.tfvars.json
+
+# Ignore local environment files
+Day*/.terraform.tfstate.lock.info
