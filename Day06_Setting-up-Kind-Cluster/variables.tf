@@ -9,7 +9,7 @@ variable "cluster_name" {
 variable "nodes" {
   description = "Number of worker nodes (control plane is always 1)"
   type        = number
-  default     = 2
+  default     = 3
 }
 
 variable "kubernetes_version" {

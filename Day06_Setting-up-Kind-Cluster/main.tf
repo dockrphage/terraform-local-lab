@@ -19,7 +19,7 @@ resource "random_id" "cluster_id" {
 resource "null_resource" "kind_cluster" {
   # Trigger recreation if vars change
   triggers = {
-    cluster_name = var.cluster_name
+    cluster_name = "${var.cluster_name}-${random_id.cluster_id.hex}"
     nodes        = var.nodes
     k8s_version  = var.kubernetes_version
   }
@@ -27,8 +27,7 @@ resource "null_resource" "kind_cluster" {
   # --- CREATE ---
   provisioner "local-exec" {
     command = <<-EOT
-      echo "Creating Kind cluster: ${var.cluster_name}-${random_id.cluster_id.hex}..."
-      # Create a config file dynamically
+      echo "Creating Kind cluster: ${self.triggers.cluster_name}..."
       cat <<EOF > kind-config.yaml
       kind: Cluster
       apiVersion: kind.x-k8s.io/v1alpha4
@@ -37,7 +36,9 @@ resource "null_resource" "kind_cluster" {
       ${join("\n", [for i in range(var.nodes) : "- role: worker"])}
       EOF
       
-      kind create cluster --name ${var.cluster_name}-${random_id.cluster_id.hex} --config kind-config.yaml --image kindest/node:${var.kubernetes_version}
+      kind create cluster --name ${self.triggers.cluster_name} \
+        --config kind-config.yaml \
+        --image kindest/node:${var.kubernetes_version}
       echo "Cluster created successfully!"
     EOT
   }
@@ -46,8 +47,8 @@ resource "null_resource" "kind_cluster" {
   provisioner "local-exec" {
     when    = destroy
     command = <<-EOT
-      echo "Destroying Kind cluster: ${var.cluster_name}-${random_id.cluster_id.hex}..."
-      kind delete cluster --name ${var.cluster_name}-${random_id.cluster_id.hex}
+      echo "Destroying Kind cluster: ${self.triggers.cluster_name}..."
+      kind delete cluster --name ${self.triggers.cluster_name}
       rm -f kind-config.yaml
       echo "Cluster destroyed."
     EOT

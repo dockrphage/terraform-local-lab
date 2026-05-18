@@ -12,8 +12,12 @@ output "kubectl_context" {
 
 output "nodes_info" {
   description = "List of nodes in the cluster"
-  value = [for node in local.nodes : node]
+  value = concat(
+    ["control-plane"],
+    [for i in range(var.nodes) : "worker-${i}"]
+  )
 }
+
 
 # We need a local value to get node count (optional, but useful)
 locals {
