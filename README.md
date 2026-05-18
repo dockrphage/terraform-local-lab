@@ -1,5 +1,6 @@
 Here is the step-by-step implementation guide for **Day 05: Conditional Logic**.
-Note: There are a few errors in the code which I (unlike the previous days) have not corrected in the notes below. This gives you a learning opportunity if you wish to try and correct it. Otherswise if you want the correct code, the same can be found in the github
+Note: There are a few errors in the code which I (unlike the previous days) have not corrected in the notes below. This gives you a learning opportunity if you wish to try and correct it. Otherswise if you want the correct code, the same can be found in github
+https://github.com/dockrphage/terraform-local-lab/tree/main/Day05-Conditional
 
 In this exercise, you will learn how to make your infrastructure dynamic. You will create a system that automatically adds or removes resources based on a variable (e.g., enabling monitoring only in "Production" or adding a firewall only if `enable_security` is true).
 
