@@ -1,4 +1,4 @@
-# 🚀 Starting a Terraform Learning Series: *Locally* Without Cloud
+# 🚀 Terraform Learning Series: *Locally* Without Cloud
 
 Note: The code in the README may have one or two errors which is interntionally left as is; for updated code, refer github
 https://github.com/dockrphage/terraform-local-lab.git
