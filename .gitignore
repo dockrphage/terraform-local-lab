@@ -1,7 +1,31 @@
-.terraform/
-*.tfstate
-*.tfstate.*
-*.tfvars
-crash.log
-terraform.tfstate
-terraform.tfstate.backup
+# Ignore Terraform working directories everywhere
+**/.terraform/
+**/.terraform.lock.hcl
+
+# Ignore Terraform state files everywhere
+**/*.tfstate
+**/*.tfstate.*
+**/terraform.tfstate
+**/terraform.tfstate.backup
+
+# Ignore Terraform variable files
+**/*.tfvars
+**/*.tfvars.json
+
+# Ignore crash logs
+**/crash.log
+**/crash.*.log
+
+# Ignore local files created by labs
+**/*.backup
+**/*.bak
+
+# Ignore editor files
+**/.vscode/
+**/.idea/
+**/*~ 
+**/*.swp
+
+# Ignore OS junk
+**/.DS_Store
+**/Thumbs.db
